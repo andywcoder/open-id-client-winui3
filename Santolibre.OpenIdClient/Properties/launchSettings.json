@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Santolibre.OpenIdClient (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Santolibre.OpenIdClient (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
