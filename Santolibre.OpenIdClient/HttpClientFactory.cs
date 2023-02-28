@@ -43,21 +43,18 @@ namespace Santolibre.OpenIdClient
 
             refreshTokenDelegatingHandler.TokenRefreshed += (s, args) =>
             {
-                _logger.LogDebug("Refresh access and refresh tokens");
+                _logger.LogInformation("Refreshed access and refresh tokens");
 
                 _localSettings.IdentityInformation.AccessToken = args.AccessToken;
                 _localSettings.IdentityInformation.RefreshToken = args.RefreshToken;
                 _localSettings.IdentityInformation.IdentityToken = args.IdentityToken;
                 _localSettings.IdentityInformation.AccessTokenExpiration = DateTime.UtcNow + new TimeSpan(0, 0, args.ExpiresIn);
-
-                _localSettings.IdentityInformation = _localSettings.IdentityInformation;
                 _localSettings.Save();
 
-                _logger.LogDebug("Identity information");
-                _logger.LogDebug($"Access token: {_localSettings.IdentityInformation?.AccessToken}");
-                _logger.LogDebug($"Refresh token: {_localSettings.IdentityInformation?.RefreshToken}");
-                _logger.LogDebug($"Identity token: {_localSettings.IdentityInformation?.IdentityToken}");
-                _logger.LogDebug($"Access token expiration: {_localSettings.IdentityInformation?.AccessTokenExpiration}");
+                _logger.LogDebug($"Access token: {_localSettings.IdentityInformation.AccessToken}");
+                _logger.LogDebug($"Refresh token: {_localSettings.IdentityInformation.RefreshToken}");
+                _logger.LogDebug($"Identity token: {_localSettings.IdentityInformation.IdentityToken}");
+                _logger.LogDebug($"Access token expiration: {_localSettings.IdentityInformation.AccessTokenExpiration}");
             };
 
             var httpClient = new HttpClient(refreshTokenDelegatingHandler)

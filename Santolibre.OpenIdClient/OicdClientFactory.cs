@@ -33,6 +33,7 @@ namespace Santolibre.OpenIdClient
             options.LoggerFactory.AddProvider(_loggerProvider);
 
             var oidcClient = new IdentityModel.OidcClient.OidcClient(options);
+            
             return oidcClient;
         }
     }
